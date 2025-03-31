@@ -11,17 +11,21 @@ namespace ConsoleApp2
         private Amplifier _amplifier;
         private DVDPlayer _dvdPlayer;
         private Projector _projector;
+        private SoundSystem _soundSystem;
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector, SoundSystem soundSystem)
         {
             _amplifier = amplifier;
             _dvdPlayer = dvdPlayer;
             _projector = projector;
+            _soundSystem = soundSystem;
         }
 
         public void WatchMovie(string movie)
         {
             Console.WriteLine("Приготовься к просмотру фильма...");
+            _soundSystem.On();
+            _soundSystem.SetMode("Dolby Atmos");
             _projector.On();
             _projector.SetInput("DVD");
             _amplifier.On();
@@ -37,6 +41,7 @@ namespace ConsoleApp2
             _dvdPlayer.Off();
             _amplifier.Off();
             _projector.Off();
+            _soundSystem.Off();
         }
     }
 }
