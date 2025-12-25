@@ -11,15 +11,18 @@ namespace ConsoleApp2
         private Amplifier _amplifier;
         private DVDPlayer _dvdPlayer;
         private Projector _projector;
+        private SoundSystem _soundSystem;
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector, SoundSystem soundSystem)
         {
             _amplifier = amplifier;
             _dvdPlayer = dvdPlayer;
             _projector = projector;
+            _soundSystem = soundSystem;
+
         }
 
-        public void WatchMovie(string movie)
+        public void WatchMovie(string movie, string music)
         {
             Console.WriteLine("Приготовься к просмотру фильма...");
             _projector.On();
@@ -28,11 +31,15 @@ namespace ConsoleApp2
             _amplifier.SetVolume(5);
             _dvdPlayer.On();
             _dvdPlayer.Play(movie);
+            _soundSystem.On();
+            _soundSystem.Play(music);
         }
 
         public void EndMovie()
         {
             Console.WriteLine("Заканчиваем фильм...");
+            _soundSystem.Stop();
+            _soundSystem.Off();
             _dvdPlayer.Stop();
             _dvdPlayer.Off();
             _amplifier.Off();
