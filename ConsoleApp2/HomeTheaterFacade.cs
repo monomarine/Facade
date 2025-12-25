@@ -11,12 +11,14 @@ namespace ConsoleApp2
         private Amplifier _amplifier;
         private DVDPlayer _dvdPlayer;
         private Projector _projector;
+        private Servant _servant;
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector, Servant servant)
         {
             _amplifier = amplifier;
             _dvdPlayer = dvdPlayer;
             _projector = projector;
+            _servant = servant;
         }
 
         public void WatchMovie(string movie)
@@ -28,6 +30,7 @@ namespace ConsoleApp2
             _amplifier.SetVolume(5);
             _dvdPlayer.On();
             _dvdPlayer.Play(movie);
+            _servant.Bring();
         }
 
         public void EndMovie()
@@ -37,6 +40,8 @@ namespace ConsoleApp2
             _dvdPlayer.Off();
             _amplifier.Off();
             _projector.Off();
+            _servant.Put();
+            _servant.Grade();
         }
     }
 }
