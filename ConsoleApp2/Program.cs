@@ -7,8 +7,9 @@
             Amplifier amplifier = new Amplifier();
             DVDPlayer dvdPlayer = new DVDPlayer();
             Projector projector = new Projector();
+            LightingSystem lighting = new LightingSystem();
 
-            HomeTheaterFacade homeTheater = new HomeTheaterFacade(amplifier, dvdPlayer, projector);
+            HomeTheaterFacade homeTheater = new HomeTheaterFacade(amplifier, dvdPlayer, projector, lighting);
 
             homeTheater.WatchMovie("Гарри Поттер и принц-полукровка");
             homeTheater.EndMovie();

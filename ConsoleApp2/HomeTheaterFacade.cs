@@ -8,35 +8,41 @@ namespace ConsoleApp2
 {
     internal class HomeTheaterFacade
     {
-        private Amplifier _amplifier;
-        private DVDPlayer _dvdPlayer;
-        private Projector _projector;
+        private Amplifier amplifier;
+        private DVDPlayer dvdPlayer;
+        private Projector projector;
+        private LightingSystem lighting;
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector, LightingSystem lighting)
         {
-            _amplifier = amplifier;
-            _dvdPlayer = dvdPlayer;
-            _projector = projector;
+            this.amplifier = amplifier;
+            this.dvdPlayer = dvdPlayer;
+            this.projector = projector;
+            this.lighting = lighting;
         }
 
         public void WatchMovie(string movie)
         {
-            Console.WriteLine("Приготовься к просмотру фильма...");
-            _projector.On();
-            _projector.SetInput("DVD");
-            _amplifier.On();
-            _amplifier.SetVolume(5);
-            _dvdPlayer.On();
-            _dvdPlayer.Play(movie);
+            Console.WriteLine($"\nНачинаем просмотр фильма");
+            lighting.Dim(10);
+            projector.On();
+            projector.SetInput("DVD");
+            amplifier.On();
+            amplifier.SetVolume(25);
+            dvdPlayer.On();
+            dvdPlayer.Play(movie);
+            Console.WriteLine($" Наслаждайтесь просмотром!\n");
         }
 
         public void EndMovie()
         {
-            Console.WriteLine("Заканчиваем фильм...");
-            _dvdPlayer.Stop();
-            _dvdPlayer.Off();
-            _amplifier.Off();
-            _projector.Off();
+            Console.WriteLine($"\nЗавершаем просмотр фильма");
+            dvdPlayer.Stop();
+            dvdPlayer.Off();
+            amplifier.Off();
+            projector.Off();
+            lighting.On();
+            Console.WriteLine($"Просмотр завершен\n");
         }
     }
 }
