@@ -11,17 +11,24 @@ namespace ConsoleApp2
         private Amplifier _amplifier;
         private DVDPlayer _dvdPlayer;
         private Projector _projector;
+        private PopcornMachine _popcornMachine;
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector, PopcornMachine popcornMachine)
         {
             _amplifier = amplifier;
             _dvdPlayer = dvdPlayer;
             _projector = projector;
+            _popcornMachine = popcornMachine;
         }
 
         public void WatchMovie(string movie)
         {
             Console.WriteLine("Приготовься к просмотру фильма...");
+
+            _popcornMachine.On();
+            _popcornMachine.AddButter();
+            _popcornMachine.AddSalt();
+
             _projector.On();
             _projector.SetInput("DVD");
             _amplifier.On();
@@ -37,6 +44,7 @@ namespace ConsoleApp2
             _dvdPlayer.Off();
             _amplifier.Off();
             _projector.Off();
+            _popcornMachine.Off();
         }
     }
 }
