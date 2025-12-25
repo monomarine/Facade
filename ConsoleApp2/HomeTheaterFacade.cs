@@ -11,17 +11,21 @@ namespace ConsoleApp2
         private Amplifier _amplifier;
         private DVDPlayer _dvdPlayer;
         private Projector _projector;
+        private LightingSystem _lightingSystem; // Новая зависимость
 
-        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer, Projector projector)
+        public HomeTheaterFacade(Amplifier amplifier, DVDPlayer dvdPlayer,
+                               Projector projector, LightingSystem lightingSystem) // Обновлённый конструктор
         {
             _amplifier = amplifier;
             _dvdPlayer = dvdPlayer;
             _projector = projector;
+            _lightingSystem = lightingSystem; // Инициализация новой зависимости
         }
 
         public void WatchMovie(string movie)
         {
             Console.WriteLine("Приготовься к просмотру фильма...");
+            _lightingSystem.Dim(10); // Приглушаем свет перед просмотром
             _projector.On();
             _projector.SetInput("DVD");
             _amplifier.On();
@@ -37,6 +41,7 @@ namespace ConsoleApp2
             _dvdPlayer.Off();
             _amplifier.Off();
             _projector.Off();
+            _lightingSystem.On(); // Включаем свет после просмотра
         }
     }
 }
