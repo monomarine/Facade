@@ -30,8 +30,7 @@ namespace ConsoleApp2
             _amplifier.SetVolume(5);
             _dvdPlayer.On();
             _dvdPlayer.Play(movie);
-            _movieRoom.ReceptionVisitors(20);
-            _movieRoom.DisplayInfo();
+             _movieRoom.DisplayInfo();
         }
 
         public void EndMovie()

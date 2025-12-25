@@ -3,7 +3,7 @@
 namespace ConsoleApp2
 {
     /// <summary>
-    /// Юсупова Айгерина 3пк2. Представляет кинозал с его характеристиками(сам кинозал, его вместимость, подготовлен/не подготовлен и зрители)
+    /// Представляет кинозал с его характеристиками(сам кинозал, его вместимость, подготовлен/не подготовлен и зрители)
     /// </summary>
     public class MovieRoom
     {
@@ -53,24 +53,7 @@ namespace ConsoleApp2
             _currentVisitors = 0;
         }
 
-        public void ReceptionVisitors(int visitorsCount)
-        {
-            if (!_isPrepared)
-            {
-                Console.WriteLine($"Кинозал {_roomName} не подготовлен");
-                return;
-            }
-
-            if (_currentVisitors + visitorsCount > _capacity)
-            {
-                Console.WriteLine($"Свободных мест: {_capacity - _currentVisitors}");
-                return;
-            }
-
-            _currentVisitors += visitorsCount;
-            Console.WriteLine($"В кинозале {_roomName} всего{visitorsCount} зрителей. Всего: {_currentVisitors}/{_capacity}");
-        }
-
+  
         public void DisplayInfo()
         {
          
